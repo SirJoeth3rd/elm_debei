@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Debei</title>
+  </head>
+
+  <body>
+    <div id="elm-app-is-loaded-here"></div>
+    
+    <script src="elm.js"></script>
+    <script>
+      var app = Elm.Debei.init({
+          node: document.getElementById("elm-app-is-loaded-here"),
+	  flags: [
+	      {url: 'garments/bikini_blue.jpg', price:100 , name: 'bikini', color: 'blue'}, //dress
+	      {url: 'garments/bikini_pink.jpg', price:100 , name: 'bikini', color: 'pink'}, //dress
+	  ]
+      })
+    </script>
+  </body>
+</html>
