@@ -3,6 +3,7 @@ import Browser
 import List
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Css exposing (..)
 
 main = Browser.element
        { init = init
@@ -34,56 +35,20 @@ subscriptions _ =
     Sub.none
         
 -- ALL HTML PRODUCING FUNCTIONS
-type alias Color = String
-type alias BackgroundColor = Color
-type Display = Flex | Grid
-type alias Height = Length
-type alias Width = Length
-
-type LengthUnit = Px | Cm | Mm | Per | Em | Rem
-type alias Length = {unit: LengthUnit, length: Float}
-    
-lengthString: Length -> String
-lengthString length =
-    let unitstring =
-            case length.unit of
-                Px -> "px"
-                Cm -> "cm"
-                Mm -> "mm"
-                Per -> "%"
-                Em -> "em"
-                Rem -> "rem"
-    in
-        unitstring ++ " " ++ (String.fromFloat length.length)
-                         
-            
-type Css
-    = Display Display
-      | Color Color
-      | BackgroundColor Color
-      | Width Length
-      | Height Length
-      
-cssStyle: Css -> Html.Attribute msg
-cssStyle css =
-    case css of
-        Display val ->
-            case val of
-                Flex -> style "display" "flex"
-                Grid -> style "display" "grid"
-        BackgroundColor val -> style "background-color" val
-        Color val -> style "color" val
-        Width val -> style "width" (lengthString val)
-        Height val -> style "height" (lengthString val)
-                
-                           
 
 dressHtml: Dress -> Html msg
 dressHtml dress =
     img [src dress.url
-         ,cssStyle Width 
+        ,cssStyle <| Width (length 50 Px)
         ]
     []
+
+-- wat wil ek he?
+-- Width (LengthQuantity Px 60)
+-- Width (Keyword Auto)
+-- Width (CssFunction Add(CssVar("--some-var")))
+-- So wat van ek maak hierdie defs private bv type CssFunction_ = Add LengthQuantity Lengthquantity | Mul
+-- en dan maak ek die length type soos hierdie Length = LengthQuantity_ 
 
 view: Checkout -> Html Msg
 view checkout =

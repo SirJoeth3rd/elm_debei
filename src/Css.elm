@@ -102,5 +102,5 @@ time size dim = Quantity <| Time size dim
 eg: List (Html.Attribute msg)
 eg = map cssStyle [Display Flex, Rotate <| angle 90 Deg]
      
-main = text "hello sailor"
+main = text "compiles"
        
